@@ -1,0 +1,14 @@
+# ignore environment files
+.env
+.env.*
+!.env.example
+
+# ignore dependency folders
+node_modules/
+
+# ignore generated build output
+dist/
+build/
+
+# ignore OS metadata
+.DS_Store
