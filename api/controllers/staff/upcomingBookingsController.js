@@ -1,5 +1,5 @@
 // controllers/staffController.js
-import Booking from "/Users/tahura/Desktop/StayEase/api/models/booking.js";
+import Booking from "../../models/booking.js";
 
 
 

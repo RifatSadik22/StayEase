@@ -1,6 +1,6 @@
-import ServiceRequest from "/Users/tahura/Desktop/StayEase/api/models/ServiceRequest.js";
+import ServiceRequest from "../../models/ServiceRequest.js";
 
-import { io } from "/Users/tahura/Desktop/StayEase/api/index.js"; // make sure io is exported from index.js
+import { io } from "../../index.js";
 
 // 📌 Get all housekeeping requests assigned to a staff
 export const getAssignedHousekeepingRequests = async (req, res) => {

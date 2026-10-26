@@ -47,10 +47,14 @@ export { io };
 // Connect to MongoDB
 const connect = async () => {
   try {
-    await mongoose.connect(process.env.mongo);
+    const mongoUri = process.env.mongo;
+    if (!mongoUri) {
+      throw new Error("Missing mongo environment variable in api/.env");
+    }
+    await mongoose.connect(mongoUri);
     console.log('Database connected successfullyyy');
   } catch (error) {
-    throw new Error('Database connection failed');
+    throw new Error(`Database connection failed: ${error.message}`);
   }
 };
 mongoose.connection.on('disconnected', () => {
@@ -104,7 +108,9 @@ io.on("connection", (socket) => {
 
 // ✅ Start server (with http server, not app)
 server.listen(3000, () => {
-  connect();
+  connect().catch((error) => {
+    console.error(error.message);
+  });
   console.log("Server is running on port 3000 and is using socket.io");
 });
 // Start the server
@@ -117,7 +123,6 @@ server.listen(3000, () => {
 //     console.log(r.route.path);
 //   }
 // });
-
 
 
 

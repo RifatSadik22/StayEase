@@ -1,6 +1,12 @@
 import stripe from "../services/stripe.js";
 
 export const createPaymentIntent = async (req, res) => {
+  if (!stripe) {
+    return res.status(503).json({
+      error: "Payments are not configured. Set STRIPE_SECRET_KEY in api/.env.",
+    });
+  }
+
   try {
     const { amount, currency } = req.body; 
     // amount in cents -> $10 = 1000
